@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+#
+# Try, painfully, to get a Berlin burgeramt appointment.
+#
+# Inspired by https://gist.github.com/pbock/3ab260f3862c350e6b5f
+#
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
