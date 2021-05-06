@@ -8,7 +8,6 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 
-import subprocess
 import sys
 import time
 
@@ -17,7 +16,7 @@ DEFAULT_SLEEP = 5 # seconds
 URL = 'https://www.migrationsverket.se/ansokanbokning/valjtyp?0&enhet=U0586&sprak=en&callback=https:/www.swedenabroad.se'
 
 def notify(message):
-    subprocess.call(["i3-nagbar", "-m", message])
+    print("????? do something here")
 
 def appointment_available(drv):
     print("Looking for appointments...")
@@ -45,11 +44,6 @@ def appointment_available(drv):
     return False
 
 
-def load_link_in_new_tab(drv, url):
-    drv.find_element_by_tag_name("body").send_keys(Keys.CONTROL + 't')
-    drv.execute_script('window.open("{}", "_blank");'.format(url))
-    drv.switch_to_window(drv.window_handles[1])
-
 def main():
     try:
         sleep = int(sys.argv[1])
@@ -68,8 +62,6 @@ def main():
         print("Refreshing...")
         driver.refresh()
         app_link = appointment_available(driver)
-#    link = app_link.get_attribute("href")
-#    load_link_in_new_tab(driver, link)
     notify("Appointment found!")
     time.sleep(sys.maxint)
 
