@@ -55,13 +55,11 @@ def main():
 
     print("Loading Chrome...")
     driver = webdriver.Chrome()
-    app_link = appointment_available(driver)
-    while not app_link:
+    while not appointment_available(driver):
         print("- No appointments found, sleeping {0}s...".format(sleep))
         time.sleep(sleep)
         print("Refreshing...")
         driver.refresh()
-        app_link = appointment_available(driver)
     notify("Appointment found!")
     time.sleep(sys.maxint)
 
